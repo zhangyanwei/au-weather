@@ -1,0 +1,15 @@
+
+city-weather:
+  scheduler:
+    cron: 0 * * ? * *
+  cities:
+    - code: 2147714
+      name: Sydney
+    - code: 7839805
+      name: Melbourne
+    - code: 7839791
+      name: Wollongong
+  provider:
+    open:
+      url: https://samples.openweathermap.org/data/2.5/weather
+      appid: b6907d289e10d714a6e88b30761fae22

@@ -1,0 +1,19 @@
+{
+  "properties": [
+    {
+      "name": "city-weather.scheduler.cron",
+      "type": "java.lang.String",
+      "description": "The CRON expression for the scheduled task sends the weathers to the clients."
+    },
+    {
+      "name": "city-weather.provider.open.url",
+      "type": "java.lang.String",
+      "description": "[OpenWeather] The base URL address for APIs."
+    },
+    {
+      "name": "city-weather.provider.open.appid",
+      "type": "java.lang.String",
+      "description": "[OpenWeather] The application id requested from the OpenWeather."
+    }
+  ]
+}
