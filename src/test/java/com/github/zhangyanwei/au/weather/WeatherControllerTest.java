@@ -36,7 +36,7 @@ public class WeatherControllerTest {
     private WeatherService weatherService;
 
     @Test
-    public void canRetrieveByIdWhenExists() throws Exception {
+    public void renderHTMLWithGivenCities() throws Exception {
         // Given
         City city = new City();
         city.setCode("2147714");

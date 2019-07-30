@@ -33,6 +33,7 @@ public class OpenCityWeatherProvider implements CityWeatherProvider {
                 .build()
                 .toUri();
 
+        // If you want to make the unit test more easier, @Autowire it.
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<WeatherResponse> entity = restTemplate.getForEntity(uri, WeatherResponse.class);
         if (entity.getStatusCode() != HttpStatus.OK) {

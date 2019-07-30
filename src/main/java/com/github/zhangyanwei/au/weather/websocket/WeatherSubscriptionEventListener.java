@@ -9,8 +9,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.messaging.SessionConnectEvent;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
-import org.springframework.web.socket.messaging.SessionSubscribeEvent;
-import org.springframework.web.socket.messaging.SessionUnsubscribeEvent;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -55,18 +53,13 @@ public class WeatherSubscriptionEventListener {
     }
 
     @EventListener
-    public void handleSessionSubscribeEvent(SessionSubscribeEvent event) {
-        log.info("Received a subscription.");
-    }
-
-    @EventListener
-    public void handleSessionUnsubscribeEvent(SessionUnsubscribeEvent event) {
-        log.info("Received a subscription.");
-    }
-
-    @EventListener
     public void handleSessionDisconnectEvent(SessionDisconnectEvent event) {
         log.info("Disconnect...");
+        SimpMessageHeaderAccessor accessor = getAccessor(event.getMessage(), SimpMessageHeaderAccessor.class);
+        if (accessor != null) {
+            String sessionId = accessor.getSessionId();
+            cityWeatherSubscriptions.remove(sessionId);
+        }
     }
 
 }
