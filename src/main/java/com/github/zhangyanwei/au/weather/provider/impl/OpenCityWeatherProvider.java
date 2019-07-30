@@ -4,25 +4,28 @@ import com.github.zhangyanwei.au.weather.model.CityWeather;
 import com.github.zhangyanwei.au.weather.provider.CityWeatherProvider;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 @Slf4j
+@Data
 @Component
+@ConfigurationProperties(prefix = "city-weather.provider.open")
 public class OpenCityWeatherProvider implements CityWeatherProvider {
 
-    @Value("${city-weather.provider.open.url}")
     private String url;
-
-    @Value("${city-weather.provider.open.appid}")
     private String appid;
+    private Map<String, List<String>> parameters;
 
     // For this kind of methods, add @Cacheable on it will feather reduce the unnecessary requests.
     @Override
@@ -30,6 +33,7 @@ public class OpenCityWeatherProvider implements CityWeatherProvider {
         URI uri = UriComponentsBuilder.fromHttpUrl(url)
                 .queryParam("appid", appid)
                 .queryParam("id", cityCode)
+                .queryParams(new LinkedMultiValueMap<>(parameters))
                 .build()
                 .toUri();
 

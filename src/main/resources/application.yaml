@@ -11,5 +11,8 @@ city-weather:
       name: Wollongong
   provider:
     open:
-      url: https://samples.openweathermap.org/data/2.5/weather
-      appid: b6907d289e10d714a6e88b30761fae22
+      url: https://api.openweathermap.org/data/2.5/weather
+      appid: a80db045e474210a3cf0720934733ae0
+      parameters:
+        units:
+          - metric

@@ -14,6 +14,11 @@
       "name": "city-weather.provider.open.appid",
       "type": "java.lang.String",
       "description": "[OpenWeather] The application id requested from the OpenWeather."
+    },
+    {
+      "name": "city-weather.provider.open.parameters.units",
+      "type": "java.lang.String",
+      "description": "[OpenWeather] Additional query parameters for APIs."
     }
   ]
 }
